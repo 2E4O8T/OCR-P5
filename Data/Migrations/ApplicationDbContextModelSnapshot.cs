@@ -17,10 +17,128 @@ namespace EVSec.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.13")
+                .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("EVSec.Models.Interventions", b =>
+                {
+                    b.Property<int>("InterventionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InterventionId"), 1L, 1);
+
+                    b.Property<string>("TypeIntervention")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("InterventionId");
+
+                    b.ToTable("Interventions", (string)null);
+                });
+
+            modelBuilder.Entity("EVSec.Models.InterventionsReparations", b =>
+                {
+                    b.Property<int>("IntervetionsReparationsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IntervetionsReparationsId"), 1L, 1);
+
+                    b.Property<int?>("InterventionsInterventionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IntervetionsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReparationsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IntervetionsReparationsId");
+
+                    b.HasIndex("InterventionsInterventionId");
+
+                    b.HasIndex("ReparationsId");
+
+                    b.ToTable("InterventionsReparations", (string)null);
+                });
+
+            modelBuilder.Entity("EVSec.Models.Inventaire", b =>
+                {
+                    b.Property<int>("CodeVin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodeVin"), 1L, 1);
+
+                    b.Property<int>("Annee")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateAchat")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateVente")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Finition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsVente")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Marque")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Modele")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Photo")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<float>("PrixAchat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("PrixVente")
+                        .HasColumnType("real");
+
+                    b.HasKey("CodeVin");
+
+                    b.ToTable("Inventaire", (string)null);
+                });
+
+            modelBuilder.Entity("EVSec.Models.Reparations", b =>
+                {
+                    b.Property<int>("ReparationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReparationId"), 1L, 1);
+
+                    b.Property<float>("CoutReparation")
+                        .HasColumnType("real");
+
+                    b.Property<DateTime>("DateDisponibilite")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InventaireId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReparationId");
+
+                    b.HasIndex("InventaireId");
+
+                    b.ToTable("Reparations", (string)null);
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -224,6 +342,30 @@ namespace EVSec.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("EVSec.Models.InterventionsReparations", b =>
+                {
+                    b.HasOne("EVSec.Models.Interventions", null)
+                        .WithMany("InterventionsReparations")
+                        .HasForeignKey("InterventionsInterventionId");
+
+                    b.HasOne("EVSec.Models.Reparations", null)
+                        .WithMany("InterventionsReparations")
+                        .HasForeignKey("ReparationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EVSec.Models.Reparations", b =>
+                {
+                    b.HasOne("EVSec.Models.Inventaire", "Inventaire")
+                        .WithMany("Reparations")
+                        .HasForeignKey("InventaireId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Inventaire");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -273,6 +415,21 @@ namespace EVSec.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EVSec.Models.Interventions", b =>
+                {
+                    b.Navigation("InterventionsReparations");
+                });
+
+            modelBuilder.Entity("EVSec.Models.Inventaire", b =>
+                {
+                    b.Navigation("Reparations");
+                });
+
+            modelBuilder.Entity("EVSec.Models.Reparations", b =>
+                {
+                    b.Navigation("InterventionsReparations");
                 });
 #pragma warning restore 612, 618
         }
