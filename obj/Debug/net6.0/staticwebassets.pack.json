@@ -13,6 +13,26 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\A141QT\\source\\repos\\EVSec\\wwwroot\\images\\Facebooklogo.png",
+      "PackagePath": "staticwebassets\\images\\Facebooklogo.png"
+    },
+    {
+      "Id": "C:\\Users\\A141QT\\source\\repos\\EVSec\\wwwroot\\images\\GitHublogo.png",
+      "PackagePath": "staticwebassets\\images\\GitHublogo.png"
+    },
+    {
+      "Id": "C:\\Users\\A141QT\\source\\repos\\EVSec\\wwwroot\\images\\Twitterlogo.png",
+      "PackagePath": "staticwebassets\\images\\Twitterlogo.png"
+    },
+    {
+      "Id": "C:\\Users\\A141QT\\source\\repos\\EVSec\\wwwroot\\images\\background.png",
+      "PackagePath": "staticwebassets\\images\\background.png"
+    },
+    {
+      "Id": "C:\\Users\\A141QT\\source\\repos\\EVSec\\wwwroot\\images\\logosite.png",
+      "PackagePath": "staticwebassets\\images\\logosite.png"
+    },
+    {
       "Id": "C:\\Users\\A141QT\\source\\repos\\EVSec\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
