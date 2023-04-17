@@ -23,7 +23,7 @@ namespace EVSec.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Inventaires != null ? 
-                          View(await _context.Inventaires.ToListAsync()) :
+                          View(await _context.Inventaires.Include(i => i.Reparations).ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Inventaires'  is null.");
         }
 
@@ -56,7 +56,8 @@ namespace EVSec.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CodeVin,Annee,Marque,Modele,Finition,DateAchat,PrixAchat,PrixVente,DateVente,IsVente,Description,Photo")] Inventaire inventaire)
+        //public async Task<IActionResult> Create([Bind("CodeVin,Annee,Marque,Modele,Finition,DateAchat,PrixAchat,PrixVente,DateVente,IsVente,Description,Photo")] Inventaire inventaire)
+        public async Task<IActionResult> Create([Bind("CodeVin,Annee,Marque,Modele,Finition,DateAchat,PrixAchat,PrixVente,DateVente,IsVente")] Inventaire inventaire)
         {
             if (ModelState.IsValid)
             {

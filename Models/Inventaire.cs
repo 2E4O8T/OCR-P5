@@ -38,8 +38,8 @@ namespace EVSec.Models
         public DateTime DateVente { get; set; }
         [DisplayName("Véhicule disponible")]
         public bool IsVente { get; set; }
-        public string Description { get; set; }
-        public byte[] Photo { get; set; }
+        public string? Description { get; set; }
+        public byte[]? Photo { get; set; }
         public ICollection<Reparations>? Reparations { get; set; }
     }
 }

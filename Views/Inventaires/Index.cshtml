@@ -45,6 +45,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Photo)
             </th>
+            <th>
+                Date de disponibilité
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -82,7 +85,13 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Photo)
+                @*@Html.DisplayFor(modelItem => item.Reparations)*@
+            </td>
+            <td>
+                @foreach (var reparation in item.Reparations)
+                {
+                        <p>@reparation.DateDisponibilite</p>
+                }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CodeVin">Edit</a> |

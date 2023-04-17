@@ -4,9 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Ajouter un véhicule</h1>
 
-<h4>Inventaire</h4>
+<!--<h4>Inventaire</h4>-->
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -57,18 +57,21 @@
                     <input class="form-check-input" asp-for="IsVente" /> @Html.DisplayNameFor(model => model.IsVente)
                 </label>
             </div>
-            <div class="form-group">
+@*            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Photo" class="control-label"></label>
-                <input asp-for="Photo" class="form-control" />
+                <input type="file" asp-for="Photo" class="form-control" />
                 <span asp-validation-for="Photo" class="text-danger"></span>
             </div>
+            <div>
+                &nbsp;
+            </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Ajouter le véhicule" class="btn btn-primary" />
             </div>
         </form>
     </div>

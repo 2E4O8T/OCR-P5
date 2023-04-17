@@ -35,6 +35,12 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+var supportedCultures = new[] { "fr-FR" };
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+    .AddSupportedCultures(supportedCultures.ToArray())
+    .AddSupportedUICultures(supportedCultures);
+app.UseRequestLocalization(localizationOptions);
+
 app.UseRouting();
 
 app.UseAuthentication();

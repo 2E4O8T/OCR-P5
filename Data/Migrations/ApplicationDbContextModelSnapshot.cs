@@ -83,7 +83,6 @@ namespace EVSec.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Finition")
@@ -102,7 +101,6 @@ namespace EVSec.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Photo")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<float>("PrixAchat")

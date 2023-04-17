@@ -48,7 +48,7 @@ namespace EVSec.Controllers
         // GET: Reparations/Create
         public IActionResult Create()
         {
-            ViewData["InventaireId"] = new SelectList(_context.Inventaires, "CodeVin", "Finition");
+            ViewData["InventaireId"] = new SelectList(_context.Inventaires, "CodeVin", "CodeVin");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace EVSec.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["InventaireId"] = new SelectList(_context.Inventaires, "CodeVin", "Finition", reparations.InventaireId);
+            //ViewData["InventaireId"] = new SelectList(_context.Inventaires, "CodeVin", "Finition", reparations.InventaireId);
             return View(reparations);
         }
 
@@ -82,7 +82,7 @@ namespace EVSec.Controllers
             {
                 return NotFound();
             }
-            ViewData["InventaireId"] = new SelectList(_context.Inventaires, "CodeVin", "Finition", reparations.InventaireId);
+            //ViewData["InventaireId"] = new SelectList(_context.Inventaires, "CodeVin", "Finition", reparations.InventaireId);
             return View(reparations);
         }
 
